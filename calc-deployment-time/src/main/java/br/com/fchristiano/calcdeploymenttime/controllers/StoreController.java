@@ -16,40 +16,39 @@ public class StoreController {
 
 	@Autowired
 	private DeploymentTimeDao deploymentTimeDao;
-	
+
 	@RequestMapping("/store")
-    public String index() {
-        return "Greetings from Spring Boot!";
-    }
-	
+	public String index() {
+		return "Greetings from Spring Boot!";
+	}
+
 	@ResponseStatus(HttpStatus.OK)
-    @PostMapping("/store/{component}/{action}")
+	@PostMapping("/store/{component}/{action}")
 	public String postBeginDeployment(@PathVariable String component, @PathVariable String action) {
 		String deploymentTimeId = "";
-	    try {
-	      DeploymentTime user = new DeploymentTime(component, action);
-	      deploymentTimeDao.save(user);
-	      deploymentTimeId = String.valueOf(user.getId());
-	    }
-	    catch (Exception ex) {
-	      return "Error creating the deploymentTime: " + ex.toString();
-	    }
-	    return "User succesfully created with id = " + deploymentTimeId;
+		try {
+			DeploymentTime user = new DeploymentTime(component, action);
+			deploymentTimeDao.save(user);
+			deploymentTimeId = String.valueOf(user.getId());
+		} catch (Exception ex) {
+			return "Error creating the deploymentTime: " + ex.toString();
+		}
+		return "User succesfully created with id = " + deploymentTimeId;
 	}
-		
+
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping("/store/{component}/{action}/{status}")
-	public String postEndDeployment(@PathVariable String component, @PathVariable String action, @PathVariable String status) {
+	public String postEndDeployment(@PathVariable String component, @PathVariable String action,
+			@PathVariable String status) {
 		String deploymentTimeId = "";
-	    try {
-	      DeploymentTime user = new DeploymentTime(component, action, status);
-	      deploymentTimeDao.save(user);
-	      deploymentTimeId = String.valueOf(user.getId());
-	    }
-	    catch (Exception ex) {
-	      return "Error creating the deploymentTime: " + ex.toString();
-	    }
-	    return "User succesfully created with id = " + deploymentTimeId;
+		try {
+			DeploymentTime user = new DeploymentTime(component, action, status);
+			deploymentTimeDao.save(user);
+			deploymentTimeId = String.valueOf(user.getId());
+		} catch (Exception ex) {
+			return "Error creating the deploymentTime: " + ex.toString();
+		}
+		return "User succesfully created with id = " + deploymentTimeId;
 	}
-	
+
 }
