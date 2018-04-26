@@ -24,7 +24,7 @@ public class StoreController {
 	
 	@ResponseStatus(HttpStatus.OK)
     @PostMapping("/store/{component}/{action}")
-	public String getById(@PathVariable String component, @PathVariable String action) {
+	public String postBeginDeployment(@PathVariable String component, @PathVariable String action) {
 		String deploymentTimeId = "";
 	    try {
 	      DeploymentTime user = new DeploymentTime(component, action);
@@ -36,10 +36,10 @@ public class StoreController {
 	    }
 	    return "User succesfully created with id = " + deploymentTimeId;
 	}
-	
+		
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping("/store/{component}/{action}/{status}")
-	public String getById(@PathVariable String component, @PathVariable String action, @PathVariable String status) {
+	public String postEndDeployment(@PathVariable String component, @PathVariable String action, @PathVariable String status) {
 		String deploymentTimeId = "";
 	    try {
 	      DeploymentTime user = new DeploymentTime(component, action, status);
