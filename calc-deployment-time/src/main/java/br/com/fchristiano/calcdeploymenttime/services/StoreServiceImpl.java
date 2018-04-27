@@ -1,6 +1,8 @@
 package br.com.fchristiano.calcdeploymenttime.services;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +41,12 @@ public class StoreServiceImpl implements StoreService {
 			return "Error creating the deploymentTime: " + ex.toString();
 		}
 		return "User succesfully created with id = " + deploymentTimeId;
+	}
+
+	@Override
+	public List<DeploymentTime> getAllDeploymentTime() {
+		List<DeploymentTime> list = new ArrayList<>();
+		deploymentTimeDao.findAll().forEach(e -> list.add(e));
+		return list;
 	}
 }
