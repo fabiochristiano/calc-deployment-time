@@ -1,5 +1,7 @@
 package br.com.fchristiano.calcdeploymenttime.controllers;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,11 +25,13 @@ public class StoreController {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@PostMapping("/store/{component}/{action}")
-	public String postBeginDeployment(@PathVariable String component, @PathVariable String action) {
+	@PostMapping("/store/{component}/{action}/{buildNumber}")
+	public String postBeginDeployment(@PathVariable String component, @PathVariable String action,
+			@PathVariable Integer buildNumber) {
 		String deploymentTimeId = "";
+		Date date = new Date();
 		try {
-			DeploymentTime user = new DeploymentTime(component, action);
+			DeploymentTime user = new DeploymentTime(component, action, buildNumber, date);
 			deploymentTimeDao.save(user);
 			deploymentTimeId = String.valueOf(user.getId());
 		} catch (Exception ex) {
@@ -37,12 +41,13 @@ public class StoreController {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@PostMapping("/store/{component}/{action}/{status}")
+	@PostMapping("/store/{component}/{action}/{buildNumber}/{status}")
 	public String postEndDeployment(@PathVariable String component, @PathVariable String action,
-			@PathVariable String status) {
+			@PathVariable Integer buildNumber, @PathVariable String status) {
 		String deploymentTimeId = "";
+		Date date = new Date();
 		try {
-			DeploymentTime user = new DeploymentTime(component, action, status);
+			DeploymentTime user = new DeploymentTime(component, action, buildNumber, date, status);
 			deploymentTimeDao.save(user);
 			deploymentTimeId = String.valueOf(user.getId());
 		} catch (Exception ex) {
