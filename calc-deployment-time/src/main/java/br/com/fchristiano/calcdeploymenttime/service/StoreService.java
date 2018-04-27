@@ -1,8 +1,8 @@
-package br.com.fchristiano.calcdeploymenttime.services;
+package br.com.fchristiano.calcdeploymenttime.service;
 
 import java.util.List;
 
-import br.com.fchristiano.calcdeploymenttime.models.DeploymentTime;
+import br.com.fchristiano.calcdeploymenttime.entity.DeploymentTime;
 
 public interface StoreService {
 

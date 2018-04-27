@@ -1,4 +1,4 @@
-package br.com.fchristiano.calcdeploymenttime.services;
+package br.com.fchristiano.calcdeploymenttime.service;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,13 +7,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fchristiano.calcdeploymenttime.models.DeploymentTime;
-import br.com.fchristiano.calcdeploymenttime.models.DeploymentTimeDao;
+import br.com.fchristiano.calcdeploymenttime.entity.DeploymentTime;
+import br.com.fchristiano.calcdeploymenttime.repository.DeploymentTimeRepository;
 
 @Service
 public class StoreServiceImpl implements StoreService {
 	@Autowired
-	private DeploymentTimeDao deploymentTimeDao;
+	private DeploymentTimeRepository deploymentTimeRepository;
 
 	@Override
 	public String beginDeployment(String component, String action, Integer buildNumber) {
@@ -21,7 +21,7 @@ public class StoreServiceImpl implements StoreService {
 		Date date = new Date();
 		try {
 			DeploymentTime user = new DeploymentTime(component, action, buildNumber, date);
-			deploymentTimeDao.save(user);
+			deploymentTimeRepository.save(user);
 			deploymentTimeId = String.valueOf(user.getId());
 		} catch (Exception ex) {
 			return "Error creating the deploymentTime: " + ex.toString();
@@ -35,7 +35,7 @@ public class StoreServiceImpl implements StoreService {
 		Date date = new Date();
 		try {
 			DeploymentTime user = new DeploymentTime(component, action, buildNumber, date, status);
-			deploymentTimeDao.save(user);
+			deploymentTimeRepository.save(user);
 			deploymentTimeId = String.valueOf(user.getId());
 		} catch (Exception ex) {
 			return "Error creating the deploymentTime: " + ex.toString();
@@ -46,7 +46,7 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public List<DeploymentTime> getAllDeploymentTime() {
 		List<DeploymentTime> list = new ArrayList<>();
-		deploymentTimeDao.findAll().forEach(e -> list.add(e));
+		deploymentTimeRepository.findAll().forEach(e -> list.add(e));
 		return list;
 	}
 }

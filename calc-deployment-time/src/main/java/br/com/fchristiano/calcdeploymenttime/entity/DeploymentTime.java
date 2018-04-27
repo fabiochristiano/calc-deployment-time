@@ -1,4 +1,4 @@
-package br.com.fchristiano.calcdeploymenttime.models;
+package br.com.fchristiano.calcdeploymenttime.entity;
 
 import java.io.Serializable;
 import java.util.Date;

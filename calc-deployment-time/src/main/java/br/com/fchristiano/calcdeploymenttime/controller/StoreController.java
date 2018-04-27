@@ -1,4 +1,4 @@
-package br.com.fchristiano.calcdeploymenttime.controllers;
+package br.com.fchristiano.calcdeploymenttime.controller;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fchristiano.calcdeploymenttime.models.DeploymentTime;
-import br.com.fchristiano.calcdeploymenttime.services.StoreService;
+import br.com.fchristiano.calcdeploymenttime.entity.DeploymentTime;
+import br.com.fchristiano.calcdeploymenttime.service.StoreService;
 
 @RestController
 public class StoreController {
