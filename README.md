@@ -21,6 +21,7 @@ Response body:
 ```
 
 `POST  /v1/store/component/action/version` - Registra o tempo inicial de um deploy.
+
 | Parâmetro   | Descrição                           |
 |:------------|:------------------------------------|
 | `component` | ome do componente. Ex.: login-app   |
@@ -28,6 +29,7 @@ Response body:
 | `version`   | Versão do componente. Ex.: 1.4.0-23 |
 
 `POST /v1/store/component/action/buildNumber/status` - Registra o tempo final de um deploy.
+
 | Parâmetro   | Descrição                                                     |
 |:------------|:--------------------------------------------------------------|
 | `component` | ome do componente. Ex.: login-app                             |
