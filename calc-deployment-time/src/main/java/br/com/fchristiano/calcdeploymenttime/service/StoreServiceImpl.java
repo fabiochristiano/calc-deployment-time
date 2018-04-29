@@ -20,9 +20,9 @@ public class StoreServiceImpl implements StoreService {
 		String deploymentTimeId = "";
 		Date date = new Date();
 		try {
-			DeploymentTime user = new DeploymentTime(component, action, version, date);
-			deploymentTimeRepository.save(user);
-			deploymentTimeId = String.valueOf(user.getId());
+			DeploymentTime deploymentTime = new DeploymentTime(component, action, version, date);
+			deploymentTimeRepository.save(deploymentTime);
+			deploymentTimeId = String.valueOf(deploymentTime.getId());
 		} catch (Exception ex) {
 			return "Error creating the deploymentTime: " + ex.toString();
 		}
@@ -34,9 +34,9 @@ public class StoreServiceImpl implements StoreService {
 		String deploymentTimeId = "";
 		Date date = new Date();
 		try {
-			DeploymentTime user = new DeploymentTime(component, action, version, date, status);
-			deploymentTimeRepository.save(user);
-			deploymentTimeId = String.valueOf(user.getId());
+			DeploymentTime deploymentTime = new DeploymentTime(component, action, version, date, status);
+			deploymentTimeRepository.save(deploymentTime);
+			deploymentTimeId = String.valueOf(deploymentTime.getId());
 		} catch (Exception ex) {
 			return "Error creating the deploymentTime: " + ex.toString();
 		}
