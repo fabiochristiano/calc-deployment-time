@@ -6,9 +6,9 @@ import br.com.fchristiano.calcdeploymenttime.entity.DeploymentTime;
 
 public interface StoreService {
 
-	String beginDeployment(String component, String action, Integer buildNumber);
+	String beginDeployment(String component, String action, String version);
 
-	String endDeployment(String component, String action, Integer buildNumber, String status);
+	String endDeployment(String component, String action, String version, String status);
 	
 	List<DeploymentTime> getAllDeploymentTime();
 	

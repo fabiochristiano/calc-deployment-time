@@ -31,8 +31,8 @@ public class DeploymentTime implements Serializable {
 	private String action;
 
 	@NotNull
-	@Column(name = "build_number")
-	private Integer buildNumber;
+	@Column(name = "version")
+	private String version;
 
 	@Column(name = "status")
 	private String status;
@@ -49,17 +49,17 @@ public class DeploymentTime implements Serializable {
 		this.id = id;
 	}
 
-	public DeploymentTime(String component, String action, Integer buildNumber, Date date) {
+	public DeploymentTime(String component, String action, String version, Date date) {
 		this.component = component;
 		this.action = action;
-		this.buildNumber = buildNumber;
+		this.version = version;
 		this.date = date;
 	}
 
-	public DeploymentTime(String component, String action, Integer buildNumber, Date date, String status) {
+	public DeploymentTime(String component, String action, String version, Date date, String status) {
 		this.component = component;
 		this.action = action;
-		this.buildNumber = buildNumber;
+		this.version = version;
 		this.date = date;
 		this.status = status;
 	}
@@ -89,12 +89,12 @@ public class DeploymentTime implements Serializable {
 		this.action = action;
 	}
 
-	public Integer getBuildNumber() {
-		return buildNumber;
+	public String getBuildNumber() {
+		return version;
 	}
 
-	public void setBuildNumber(Integer buildNumber) {
-		this.buildNumber = buildNumber;
+	public void setBuildNumber(String buildNumber) {
+		this.version = buildNumber;
 	}
 
 	public String getStatus() {

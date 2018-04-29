@@ -27,17 +27,17 @@ public class StoreController {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@PostMapping("/store/{component}/{action}/{buildNumber}")
+	@PostMapping("/store/{component}/{action}/{version}")
 	public String postBeginDeployment(@PathVariable String component, @PathVariable String action,
-			@PathVariable Integer buildNumber) {
-		return storeService.beginDeployment(component, action, buildNumber);
+			@PathVariable String version) {
+		return storeService.beginDeployment(component, action, version);
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@PostMapping("/store/{component}/{action}/{buildNumber}/{status}")
+	@PostMapping("/store/{component}/{action}/{version}/{status}")
 	public String postEndDeployment(@PathVariable String component, @PathVariable String action,
-			@PathVariable Integer buildNumber, @PathVariable String status) {
-		return storeService.endDeployment(component, action, buildNumber, status);
+			@PathVariable String version, @PathVariable String status) {
+		return storeService.endDeployment(component, action, version, status);
 	}
 
 }

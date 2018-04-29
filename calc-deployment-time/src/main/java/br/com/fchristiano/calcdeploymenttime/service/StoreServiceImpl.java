@@ -16,11 +16,11 @@ public class StoreServiceImpl implements StoreService {
 	private DeploymentTimeRepository deploymentTimeRepository;
 
 	@Override
-	public String beginDeployment(String component, String action, Integer buildNumber) {
+	public String beginDeployment(String component, String action, String version) {
 		String deploymentTimeId = "";
 		Date date = new Date();
 		try {
-			DeploymentTime user = new DeploymentTime(component, action, buildNumber, date);
+			DeploymentTime user = new DeploymentTime(component, action, version, date);
 			deploymentTimeRepository.save(user);
 			deploymentTimeId = String.valueOf(user.getId());
 		} catch (Exception ex) {
@@ -30,11 +30,11 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public String endDeployment(String component, String action, Integer buildNumber, String status) {
+	public String endDeployment(String component, String action, String version, String status) {
 		String deploymentTimeId = "";
 		Date date = new Date();
 		try {
-			DeploymentTime user = new DeploymentTime(component, action, buildNumber, date, status);
+			DeploymentTime user = new DeploymentTime(component, action, version, date, status);
 			deploymentTimeRepository.save(user);
 			deploymentTimeId = String.valueOf(user.getId());
 		} catch (Exception ex) {
