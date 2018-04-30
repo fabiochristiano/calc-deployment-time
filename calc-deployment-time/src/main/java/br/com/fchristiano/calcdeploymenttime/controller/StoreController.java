@@ -20,14 +20,14 @@ public class StoreController {
 	@Autowired
 	private StoreService storeService;
 
-	@RequestMapping("/stores")
+	@RequestMapping("/v1/stores")
 	public ResponseEntity<List<DeploymentTime>> index() {
 		List<DeploymentTime> list = storeService.getAllDeploymentTime();
 		return new ResponseEntity<List<DeploymentTime>>(list, HttpStatus.OK);
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@PostMapping("/stores/{component}/{action}/{version}")
+	@PostMapping("/v1/stores/{component}/{action}/{version}")
 	public ResponseEntity<String> postBeginDeployment(@PathVariable String component, @PathVariable String action,
 			@PathVariable String version) {
 		String retorno;
@@ -41,7 +41,7 @@ public class StoreController {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@PostMapping("/stores/{component}/{action}/{version}/{status}")
+	@PostMapping("/v1/stores/{component}/{action}/{version}/{status}")
 	public ResponseEntity<String> postEndDeployment(@PathVariable String component, @PathVariable String action,
 			@PathVariable String version, @PathVariable String status) {
 		String retorno;
