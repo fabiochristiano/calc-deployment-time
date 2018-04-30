@@ -19,13 +19,9 @@ public class StoreServiceImpl implements StoreService {
 	public String beginDeployment(String component, String action, String version) {
 		String deploymentTimeId = "";
 		Date date = new Date();
-		try {
-			DeploymentTime deploymentTime = new DeploymentTime(component, action, version, date);
-			deploymentTimeRepository.save(deploymentTime);
-			deploymentTimeId = String.valueOf(deploymentTime.getId());
-		} catch (Exception ex) {
-			return "Error creating the deploymentTime: " + ex.toString();
-		}
+		DeploymentTime deploymentTime = new DeploymentTime(component, action, version, date);
+		deploymentTimeRepository.save(deploymentTime);
+		deploymentTimeId = String.valueOf(deploymentTime.getId());
 		return "User succesfully created with id = " + deploymentTimeId;
 	}
 
@@ -33,13 +29,9 @@ public class StoreServiceImpl implements StoreService {
 	public String endDeployment(String component, String action, String version, String status) {
 		String deploymentTimeId = "";
 		Date date = new Date();
-		try {
-			DeploymentTime deploymentTime = new DeploymentTime(component, action, version, date, status);
-			deploymentTimeRepository.save(deploymentTime);
-			deploymentTimeId = String.valueOf(deploymentTime.getId());
-		} catch (Exception ex) {
-			return "Error creating the deploymentTime: " + ex.toString();
-		}
+		DeploymentTime deploymentTime = new DeploymentTime(component, action, version, date, status);
+		deploymentTimeRepository.save(deploymentTime);
+		deploymentTimeId = String.valueOf(deploymentTime.getId());
 		return "User succesfully created with id = " + deploymentTimeId;
 	}
 

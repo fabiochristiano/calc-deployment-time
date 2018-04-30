@@ -20,24 +20,38 @@ public class StoreController {
 	@Autowired
 	private StoreService storeService;
 
-	@RequestMapping("/store")
+	@RequestMapping("/stores")
 	public ResponseEntity<List<DeploymentTime>> index() {
 		List<DeploymentTime> list = storeService.getAllDeploymentTime();
 		return new ResponseEntity<List<DeploymentTime>>(list, HttpStatus.OK);
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@PostMapping("/store/{component}/{action}/{version}")
-	public String postBeginDeployment(@PathVariable String component, @PathVariable String action,
+	@PostMapping("/stores/{component}/{action}/{version}")
+	public ResponseEntity<String> postBeginDeployment(@PathVariable String component, @PathVariable String action,
 			@PathVariable String version) {
-		return storeService.beginDeployment(component, action, version);
+		String retorno;
+		try {
+			retorno = storeService.beginDeployment(component, action, version);
+		} catch (Exception ex) {
+			return new ResponseEntity<String>("Error creating the deploymentTime: " + ex.toString(),
+					HttpStatus.EXPECTATION_FAILED);
+		}
+		return new ResponseEntity<String>(retorno, HttpStatus.OK);
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@PostMapping("/store/{component}/{action}/{version}/{status}")
-	public String postEndDeployment(@PathVariable String component, @PathVariable String action,
+	@PostMapping("/stores/{component}/{action}/{version}/{status}")
+	public ResponseEntity<String> postEndDeployment(@PathVariable String component, @PathVariable String action,
 			@PathVariable String version, @PathVariable String status) {
-		return storeService.endDeployment(component, action, version, status);
+		String retorno;
+		try {
+			retorno = storeService.endDeployment(component, action, version, status);
+		} catch (Exception ex) {
+			return new ResponseEntity<String>("Error creating the deploymentTime: " + ex.toString(),
+					HttpStatus.EXPECTATION_FAILED);
+		}
+		return new ResponseEntity<String>(retorno, HttpStatus.OK);
 	}
 
 }
