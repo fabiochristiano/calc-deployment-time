@@ -1,0 +1,39 @@
+version: '3'
+
+volumes:
+  data:
+
+services:
+  mysql:
+    image: mysql:5.6
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=calcdeploymenttime
+    networks:
+      - network1
+
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: .
+    image: springio/calc-deployment-time
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    links:
+      - mysql        
+    restart: always
+    networks:
+      - network1
+
+networks:
+  network1:
+    driver: bridge
+
